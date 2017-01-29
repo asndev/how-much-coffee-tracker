@@ -1,4 +1,5 @@
-import {call, fork, put, takeEvery, take} from 'redux-saga/effects';
+import {call, fork, put, takeEvery, take, cancel} from 'redux-saga/effects';
+import {eventChannel} from 'redux-saga';
 
 import {firebaseDb} from 'store/firebase';
 import {coffeesActions} from './actions';
@@ -28,11 +29,33 @@ function* add(action) {
   }
 }
 
+function* update() { // eslint-disable-line
+  const ref = firebaseDb.ref(path).orderByChild('timestamp');
+
+  const channel = yield eventChannel(emit => {
+    ref.on('value', (data) => {
+      emit(coffeesActions.updateList(data.val()));
+      // fork(updateData, coffeesActions.UPDATE_LIST, data.val);
+    });
+
+    return () => ref.off();
+  });
+
+  while(true) { // eslint-disable-line
+    let action = yield take(channel);
+    yield put(action);
+  }
+}
+
 function* watchLoginSucceeded() {
   // TODO why does takeEvery not work here?
   while (true) { // eslint-disable-line
     const {payload} = yield take(authActions.LOGIN_SUCCEEDED);
     path = `coffees/${payload.authUser.uid}`;
+
+    const job = yield fork(update);
+    yield take(authActions.LOGOUT_SUCCEEDED);
+    yield cancel(job);
   }
 }
 

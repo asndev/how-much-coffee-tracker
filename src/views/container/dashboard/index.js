@@ -9,11 +9,12 @@ class DashboardContainer extends React.Component {
   }
 
   renderList() {
-    return this.props.coffees.map(e => {
-      const key = e.timestamp.toTimeString();
-      // TODO add key from firebase
-      return <li>{key}</li>;
-    });
+    return Object
+      .entries(this.props.coffees)
+      .map(([k, v]) => {
+        const value = new Date(v.timestamp).toTimeString();
+        return <li key={k}>{value}</li>;
+      });
   }
 
   render() {
@@ -31,7 +32,7 @@ class DashboardContainer extends React.Component {
 
 DashboardContainer.propTypes = {
     add: PropTypes.func.isRequired,
-    coffees: PropTypes.array
+    coffees: PropTypes.object
 };
 
 const mapDispatchToProps = {
