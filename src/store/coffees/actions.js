@@ -10,8 +10,7 @@ export const coffeesActions = {
   }),
 
   addSucceeded: entry => ({
-    type: coffeesActions.ADD_SUCCEEDED,
-    payload: {entry}
+    type: coffeesActions.ADD_SUCCEEDED
   }),
 
   addFailed: error => ({

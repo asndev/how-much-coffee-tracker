@@ -1,29 +1,46 @@
-import {call, fork, put, takeEvery} from 'redux-saga/effects';
+import {call, fork, put, takeEvery, take} from 'redux-saga/effects';
 
+import {firebaseDb} from 'store/firebase';
 import {coffeesActions} from './actions';
+import {authActions} from 'store/auth/actions';
 
-const addTS = (timestamp) => {
-  return timestamp;
+let path = null;
+
+const addTimestamp = (timestamp) => {
+  if (path == null) throw Error('path cant be null');
+
+  return new Promise((res, rej) => {
+    firebaseDb.ref(path)
+      .push({timestamp: timestamp.getTime()})
+      .then(_ => res())
+      .catch(err => rej(err));
+  });
 };
 
 function* add(action) {
   const payload = action.payload;
-  console.log(payload);
   try {
-    // do request: yield call ...
-    const result = yield call(addTS, payload.timestamp);
-    console.log(result);
-    yield put(coffeesActions.addSucceeded(result));
+    yield call(addTimestamp, payload.timestamp);
+    console.log('pushed successfully');
+    yield put(coffeesActions.addSucceeded());
   } catch (error) {
     yield put(coffeesActions.addFailed(error));
   }
 }
 
+function* watchLoginSucceeded() {
+  // TODO why does takeEvery not work here?
+  while (true) { // eslint-disable-line
+    const {payload} = yield take(authActions.LOGIN_SUCCEEDED);
+    path = `coffees/${payload.authUser.uid}`;
+  }
+}
+
 function* watchAdd() {
-  // Take every LoginRequest action
   yield takeEvery(coffeesActions.ADD, add);
 }
 
 export const coffeesSagas = [
-  fork(watchAdd)
+  fork(watchAdd),
+  fork(watchLoginSucceeded)
 ];

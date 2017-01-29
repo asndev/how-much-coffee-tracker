@@ -10,7 +10,7 @@ class DashboardContainer extends React.Component {
 
   renderList() {
     return this.props.coffees.map(e => {
-      const key = e.toTimeString();
+      const key = e.timestamp.toTimeString();
       // TODO add key from firebase
       return <li>{key}</li>;
     });
