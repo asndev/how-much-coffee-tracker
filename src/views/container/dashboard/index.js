@@ -8,12 +8,18 @@ class DashboardContainer extends React.Component {
     this.props.add();
   }
 
+  handleRemove(id) {
+    this.props.remove(id);
+  }
+
   renderList() {
     return Object
       .entries(this.props.coffees)
       .map(([k, v]) => {
         const value = new Date(v.timestamp).toTimeString();
-        return <li key={k}>{value}</li>;
+        return <li key={k}>
+          {value} <a onClick={() => this.handleRemove(k)}>x</a>
+        </li>;
       });
   }
 
@@ -32,11 +38,13 @@ class DashboardContainer extends React.Component {
 
 DashboardContainer.propTypes = {
     add: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired,
     coffees: PropTypes.object
 };
 
 const mapDispatchToProps = {
-  add: coffeesActions.add
+  add: coffeesActions.add,
+  remove: coffeesActions.remove
 };
 
 export default connect(
