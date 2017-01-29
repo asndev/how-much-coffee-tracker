@@ -13,6 +13,10 @@ class DashboardContainer extends React.Component {
   }
 
   renderList() {
+    if (!this.props.coffees) {
+      // TODO write regression test for this
+      return 'no data yet';
+    }
     return Object
       .entries(this.props.coffees)
       .map(([k, v]) => {
