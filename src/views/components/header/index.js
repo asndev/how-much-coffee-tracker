@@ -5,7 +5,7 @@ import './header.scss';
 const Header = ({authenticated, logout}) => {
   return (
     <header className="header">
-      <h1 className="header__title">Application</h1>
+      <h1 className="header__title">How much Coffee?</h1>
       <ul className="header__status">
         {authenticated ?
           <li><a onClick={logout}>Sign out</a></li> :
