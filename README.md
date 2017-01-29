@@ -3,3 +3,5 @@
 
 ## wip
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/asndev/how-much-coffee-tracker.svg)](https://greenkeeper.io/)
+
