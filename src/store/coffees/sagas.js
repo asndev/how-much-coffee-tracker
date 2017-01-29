@@ -35,7 +35,6 @@ function* update() { // eslint-disable-line
   const channel = yield eventChannel(emit => {
     ref.on('value', (data) => {
       emit(coffeesActions.updateList(data.val()));
-      // fork(updateData, coffeesActions.UPDATE_LIST, data.val);
     });
 
     return () => ref.off();
