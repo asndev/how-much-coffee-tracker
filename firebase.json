@@ -1,0 +1,29 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "target",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*",
+        "headers": [
+          {"key": "X-UA-Compatible", "value": "ie=edge"},
+          {"key": "X-XSS-Protection", "value": "1; mode=block"}
+        ]
+      },
+      {
+        "source": "**/*.@(css|html|js|map)",
+        "headers": [
+          {"key": "Cache-Control", "value": "max-age=3600"}
+        ]
+      }
+    ]
+  }
+}

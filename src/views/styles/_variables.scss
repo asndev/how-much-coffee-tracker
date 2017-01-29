@@ -1,0 +1,35 @@
+$sans-serif: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+$serif: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+$base-font-family: $sans-serif;
+$base-font-weight: 400;
+$base-font-weight-bold: 700;
+
+$base-font-size: 16px;
+$base-line-height: 1.8;
+
+// Shades of gray
+
+$black: #000;
+$gray-darkest: #121111;
+$gray-darker: lighten($gray-darkest, 15);
+$gray-dark: lighten($gray-darkest, 30);
+$gray: lighten($gray-darkest, 45);
+$gray-light: lighten($gray-darkest, 60);
+$gray-lighter: lighten($gray-darkest, 75);
+$gray-lightest: lighten($gray-darkest, 85);
+$white: #fff;
+
+// Font colors
+
+$base-font-color: $gray-dark;
+$base-accent-color: $gray-dark;
+$base-accent-highlighted-color: darken($base-accent-color, 15);
+
+// random colors
+$body-background: $white;
+$base-border-color: $gray-lightest;
+$article-header-title-color: $gray-darkest;
+
+// effects
+$base-transition-speed: .2s;
+

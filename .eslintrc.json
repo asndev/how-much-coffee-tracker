@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "plugins": ["react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "google"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jasmine": true,
+    "node": true
+  },
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "rules": {
+    "require-jsdoc": "off",
+    "comma-dangle": "off",
+    "arrow-parens": "off",
+    "no-console": "off"
+  }
+}
