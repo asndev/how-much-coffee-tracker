@@ -35,7 +35,7 @@ class DashboardContainer extends React.Component {
 
   createLi(key, value) {
     return <li key={key}>
-      {new Date(value).toDateString()}
+      {new Date(value).toLocaleTimeString()}
       <a onClick={() => this.handleRemove(key)}>x</a>
     </li>;
   }
