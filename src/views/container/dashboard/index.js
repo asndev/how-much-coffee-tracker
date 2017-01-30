@@ -36,7 +36,7 @@ class DashboardContainer extends React.Component {
   createLi(key, value) {
     return <li key={key}>
       {new Date(value).toLocaleTimeString()}
-      <a onClick={() => this.handleRemove(key)}>x</a>
+      <a onClick={() => this.handleRemove(key)}> x</a>
     </li>;
   }
 
@@ -44,7 +44,7 @@ class DashboardContainer extends React.Component {
     return (
       <div>
         <h4>Dashboard</h4>
-        <a onClick={this.handleClick.bind(this)}>Click</a>
+        <a onClick={this.handleClick.bind(this)}>I just had a coffee!</a>
         <ul>
           {this.renderList()}
         </ul>
