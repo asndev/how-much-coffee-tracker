@@ -3,12 +3,13 @@ import {Record} from 'immutable';
 import {coffeesActions} from './actions';
 
 export const CoffeesState = new Record({
-  coffees: {} // TODO use record
+  coffees: {}
 });
 
 const transform = (data) => {
   let result = {};
-
+  // firebase returns an object with ids-to-timestamp mappings
+  // Example: { 1234: {timestamp: xxxxx}, 5678: {timestamp: yyyyy} }
   Object.keys(data).forEach(key => {
     const value = data[key].timestamp;
     const ds = new Date(value).toDateString();
