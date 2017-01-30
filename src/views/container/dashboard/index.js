@@ -17,14 +17,27 @@ class DashboardContainer extends React.Component {
       // TODO write regression test for this
       return 'no data yet';
     }
+    const data = this.props.coffees;
     return Object
-      .entries(this.props.coffees)
-      .map(([k, v]) => {
-        const value = new Date(v.timestamp).toTimeString();
-        return <li key={k}>
-          {value} <a onClick={() => this.handleRemove(k)}>x</a>
+      .keys(data)
+      .map((day) => {
+        const count = Object.keys(data[day]).length;
+        return <li key={day}>
+          <h4>{day} ({count})</h4>
+          <ul>
+            {data[day].map(e => {
+              return this.createLi(e.key, e.value);
+            })}
+          </ul>
         </li>;
       });
+  }
+
+  createLi(key, value) {
+    return <li key={key}>
+      {new Date(value).toDateString()}
+      <a onClick={() => this.handleRemove(key)}>x</a>
+    </li>;
   }
 
   render() {
@@ -33,7 +46,7 @@ class DashboardContainer extends React.Component {
         <h4>Dashboard</h4>
         <a onClick={this.handleClick.bind(this)}>Click</a>
         <ul>
-        {this.renderList()}
+          {this.renderList()}
         </ul>
       </div>
     );
