@@ -67,7 +67,7 @@
     "redux-logger": "^2.7.4",
     "rimraf": "^2.5.4",
     "sass-loader": "~4.1.1",
-    "shrimpit": "^0.8.0",
+    "shrimpit": "^0.9.0",
     "style-loader": "~0.13.1",
     "webpack": "^2.2.0",
     "webpack-dev-server": "2.2.0"
