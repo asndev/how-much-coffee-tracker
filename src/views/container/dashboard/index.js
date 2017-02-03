@@ -25,7 +25,7 @@ class DashboardContainer extends React.Component {
         return <li key={day}>
           <h4>{day} ({count})</h4>
           <ul>
-            {data[day].map(e => {
+            {data[day].reverse().map(e => {
               return this.createLi(e.key, e.value);
             })}
           </ul>
