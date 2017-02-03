@@ -20,6 +20,7 @@ class DashboardContainer extends React.Component {
     const data = this.props.coffees;
     return Object
       .keys(data)
+      .reverse()
       .map((day) => {
         const count = Object.keys(data[day]).length;
         return <li key={day}>
