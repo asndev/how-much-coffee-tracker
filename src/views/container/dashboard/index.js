@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {coffeesActions, getCoffees} from 'store/coffees';
 
+import Day from 'views/components/timestamps/day';
+
 class DashboardContainer extends React.Component {
 
   handleClick() {
@@ -22,23 +24,13 @@ class DashboardContainer extends React.Component {
       .keys(data)
       .reverse()
       .map((day) => {
-        const count = Object.keys(data[day]).length;
-        return <li key={day}>
-          <h4>{day} ({count})</h4>
-          <ul>
-            {data[day].reverse().map(e => {
-              return this.createLi(e.key, e.value);
-            })}
-          </ul>
-        </li>;
+        return <Day
+          key={day}
+          day={day}
+          timestamps={data[day]}
+          remove={this.handleRemove.bind(this)}
+        />;
       });
-  }
-
-  createLi(key, value) {
-    return <li key={key}>
-      {new Date(value).toLocaleTimeString()}
-      <a onClick={() => this.handleRemove(key)}> x</a>
-    </li>;
   }
 
   render() {

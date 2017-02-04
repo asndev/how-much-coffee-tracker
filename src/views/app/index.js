@@ -4,20 +4,22 @@ import {connect} from 'react-redux';
 import {authActions, getAuth} from 'store/auth';
 import Header from 'views/components/header';
 
-const App = ({authenticated, children, logout}) => {
+import './app.scss';
+
+const App = ({user, children, logout}) => {
   return (
     <div>
       <Header
-        authenticated={authenticated}
+        user={user}
         logout={logout}
       />
-      <main>{children}</main>
+      <main className="main">{children}</main>
     </div>
   );
 };
 
 App.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object,
   children: PropTypes.element,
   logout: PropTypes.func.isRequired
 };

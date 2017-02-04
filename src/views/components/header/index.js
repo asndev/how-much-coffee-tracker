@@ -2,21 +2,26 @@ import React, {PropTypes} from 'react';
 
 import './header.scss';
 
-const Header = ({authenticated, logout}) => {
+const renderUserNav = (user, logout) => {
+  return (
+    <ul className="header__status">
+      <li>Hello {user.authUser.displayName}</li>
+      <li><a onClick={logout}>Sign out</a></li>
+    </ul>
+  );
+};
+
+const Header = ({user, logout}) => {
   return (
     <header className="header">
       <h1 className="header__title">How much Coffee?</h1>
-      <ul className="header__status">
-        {authenticated ?
-          <li><a onClick={logout}>Sign out</a></li> :
-          <li>not-signed-in</li>}
-      </ul>
+      {user != null && renderUserNav(user, logout)}
     </header>
   );
 };
 
 Header.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired
 };
 
