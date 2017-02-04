@@ -3,6 +3,11 @@ import {render, shallow} from 'enzyme';
 import Header from './index';
 
 const noop = () => {};
+const user = {
+  authUser: {
+    displayName: 'peter'
+  }
+};
 
 describe('components', () => {
   describe('Header', () => {
@@ -17,14 +22,15 @@ describe('components', () => {
 
     it('should display `sign-out` when signed in', () => {
       const wrapper = shallow(
-        <Header authenticated={true} logout={noop}>Foo</Header>);
+        <Header user={user} logout={noop}>Foo</Header>);
+
       expect(wrapper.contains('Sign out')).toBe(true);
     });
 
     it('should set `onClick` correctly from props', () => {
       const onClickSpy = jasmine.createSpy('onClickSpy');
       const wrapper = shallow(
-        <Header authenticated={true} logout={onClickSpy}>Foo</Header>);
+        <Header user={user} logout={onClickSpy}>Foo</Header>);
 
       wrapper.find('a').simulate('click');
 
