@@ -21,7 +21,7 @@ const Header = ({user, logout}) => {
 };
 
 Header.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   logout: PropTypes.func.isRequired
 };
 
