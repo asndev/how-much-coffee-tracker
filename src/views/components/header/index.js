@@ -2,15 +2,10 @@ import React, {PropTypes} from 'react';
 
 import './header.scss';
 
-const isMobile = () => {
-  // TODO move to utility? or to css?
-  return screen.width < 500;
-};
-
 const renderUserNav = (user, logout) => {
   return (
     <ul className="header__status">
-      {!isMobile() && <li>Hello {user.authUser.displayName}</li>}
+      <li className="header__hello">Hello {user.authUser.displayName}</li>
       <li><a onClick={logout}>Sign out</a></li>
     </ul>
   );

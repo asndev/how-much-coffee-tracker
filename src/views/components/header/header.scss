@@ -1,4 +1,10 @@
-@import '../../styles/variables';
+@import '../../styles/globals';
+
+@include breakpoint(small) {
+  .header__hello {
+    display: none;
+  }
+}
 
 .header {
   height: 60px;
