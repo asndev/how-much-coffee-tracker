@@ -7,17 +7,21 @@ import createLogger from 'redux-logger';
 import reducers from './reducers';
 import sagas from './sagas';
 
-
 export function configureStore() {
   const sagaMiddleware = createSagaMiddleware();
   const routerReduxMiddleware = routerMiddleware(browserHistory);
-  const logger = createLogger({collapsed: true});
+  const reduxLogger = createLogger({collapsed: true});
 
-  let middleware = applyMiddleware(
-    sagaMiddleware,
-    routerReduxMiddleware,
-    logger
-  );
+  let middleware;
+  if (process.env.NODE_ENV === 'production') {
+    middleware = applyMiddleware(sagaMiddleware, routerReduxMiddleware);
+  } else {
+    middleware = applyMiddleware(
+      sagaMiddleware,
+      routerReduxMiddleware,
+      reduxLogger
+    );
+  }
 
   if (process.env.NODE_ENV !== 'production') {
     // If we are not in production mode
