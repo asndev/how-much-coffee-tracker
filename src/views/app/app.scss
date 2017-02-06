@@ -3,4 +3,16 @@ main.main {
   margin: 0 auto;
   padding: 40px;
   max-width: 660px;
+  
+  background-color: white;
+  border: 1px solid transparent;
+  border-radius: 2px;
+
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  -webkit-transition: box-shadow .4s ease-in-out;
+  -moz-transition: box-shadow .4s ease-in-out;
+  -ms-transition: box-shadow .4s ease-in-out;
+  -o-transition: box-shadow .4s ease-in-out;
+  transition: box-shadow .4s ease-in-out;
 }
