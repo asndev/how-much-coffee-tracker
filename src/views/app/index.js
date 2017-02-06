@@ -17,7 +17,7 @@ const App = ({user, children, logout}) => {
         <main className="main">{children}</main>
       </div>
       <footer>(c) 2017 Anton Stepan - https://github.com/asndev/how-much-coffee-tracker</footer>
-    <div>
+    </div>
   );
 };
 
