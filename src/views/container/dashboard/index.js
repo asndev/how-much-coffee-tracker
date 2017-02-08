@@ -22,7 +22,7 @@ class DashboardContainer extends React.Component {
     const data = this.props.coffees;
     return Object
       .keys(data)
-      .sort((a, b) => { return new Date(a).getTime() < new Date(b).getTime(); })
+      .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
       .map((day) => {
         return <Day
           key={day}
