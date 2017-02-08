@@ -8,6 +8,12 @@ import {firebaseAuth} from 'store/firebase';
 import {authActions} from './store/auth/actions';
 import {configureStore} from './store/store';
 import Root from './views/root';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {IntlProvider, addLocaleData} from 'react-intl';
+import de from 'react-intl/locale-data/de';
+addLocaleData(de);
+injectTapEventPlugin();
 
 import './views/styles/globals.scss';
 
@@ -17,12 +23,16 @@ const rootElement = document.getElementById('root');
 function render(Root) {
   ReactDOM.render(
     (
-      <AppContainer>
-        <Root
-          history={syncHistoryWithStore(browserHistory, store)}
-          store={store}
-        />
-      </AppContainer>
+      <IntlProvider locale="de">
+        <MuiThemeProvider>
+          <AppContainer>
+            <Root
+              history={syncHistoryWithStore(browserHistory, store)}
+              store={store}
+            />
+          </AppContainer>
+        </MuiThemeProvider>
+      </IntlProvider>
     ),
     rootElement
   );
