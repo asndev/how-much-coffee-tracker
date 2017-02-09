@@ -146,15 +146,7 @@ if (PROD_ENV) {
   config.devtool = 'hidden-source-map';
   config.entry.bundle.unshift('babel-polyfill');
   config.output.filename = '[name].[chunkhash].js';
-  config.module.rules.push({
-    test: /\.scss|\.css$/,
-    loader: ExtractTextPlugin.extract({
-      fallbackLoader: 'style-loader',
-      loader: 'css-loader!sass-loader',
-    })
-  });
   config.plugins.push(
-    new ExtractTextPlugin('styles.[contenthash].css'),
     new UglifyJsPlugin({
       comments: false,
       compress: {
@@ -168,6 +160,19 @@ if (PROD_ENV) {
       }
     })
   );
+}
+
+if (PROD_ENV || TEST_ENV) {
+  config.plugins.push(
+    new ExtractTextPlugin('styles.[contenthash].css')
+  ),
+  config.module.rules.push({
+    test: /\.scss|\.css$/,
+    loader: ExtractTextPlugin.extract({
+      fallbackLoader: 'style-loader',
+      loader: 'css-loader!sass-loader',
+    })
+  });
 }
 
 if (TEST_ENV) {
