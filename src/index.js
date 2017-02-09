@@ -26,11 +26,11 @@ function render(Root) {
   );
 }
 
-if (module.hot) {
-  module.hot.accept('./views/root', () => {
-    render(require('./views/root').default);
-  });
-}
+// if (module.hot) {
+//   module.hot.accept('./views/root', () => {
+//     render(require('./views/root').default);
+//   });
+// }
 
 // Before we render the app, we evaluate firebases `onAuthStateChanged` once
 // to login the user if a session is present in the local storage.
