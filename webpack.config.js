@@ -23,9 +23,6 @@ const VENDOR = [
 // TODO split into webpack.config.dev.js etc.
 
 const config = module.exports = {
-  performance: {
-    hints: 'warning'
-  },
   resolve: {
     extensions: ['.js', '.json'],
     modules: [
@@ -44,10 +41,6 @@ const config = module.exports = {
       {
         test: /\.json$/,
         loader: 'json-loader'
-      },
-      {
-        test: /\.scss|\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader'
       },
       {
         test: /\.(jpe?g|gif|png|svg)$/,
@@ -128,6 +121,11 @@ if (DEV_ENV) {
     new ProgressPlugin()
   );
 
+  config.module.rules.push({
+    test: /\.scss|\.css$/,
+    loader: 'style-loader!css-loader!postcss-loader!sass-loader'
+  });
+
   config.devServer = {
     contentBase: './src',
     historyApiFallback: true, // working urls on f5
@@ -140,9 +138,21 @@ if (DEV_ENV) {
 }
 
 if (PROD_ENV) {
+  config.performance = {
+    hints: 'error',
+    maxAssetSize: 410000,
+    maxEntrypointSize: 750000
+  };
   config.devtool = 'hidden-source-map';
   config.entry.bundle.unshift('babel-polyfill');
   config.output.filename = '[name].[chunkhash].js';
+  config.module.rules.push({
+    test: /\.scss|\.css$/,
+    loader: ExtractTextPlugin.extract({
+      fallbackLoader: 'style-loader',
+      loader: 'css-loader!sass-loader',
+    })
+  });
   config.plugins.push(
     new ExtractTextPlugin('styles.[contenthash].css'),
     new UglifyJsPlugin({
