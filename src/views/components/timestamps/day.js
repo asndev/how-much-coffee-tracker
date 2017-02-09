@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 
 const createLi = (key, value, handleRemove) => {
+  // TODO evaluate performance of '() => handle()' VS 'handle.bind(null, key)'.
   return <li key={key}>
     {new Date(value).toLocaleTimeString()}
     <a onClick={() => handleRemove(key)}> x</a>
