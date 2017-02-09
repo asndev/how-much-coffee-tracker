@@ -1,11 +1,11 @@
-import {call, fork, put, takeLatest} from 'redux-saga/effects';
-import {push, replace} from 'react-router-redux';
+import { call, fork, put, takeLatest } from 'redux-saga/effects';
+import { push, replace } from 'react-router-redux';
 
-import {firebaseAuth} from 'store/firebase';
-import {authActions} from './actions';
+import { firebaseAuth } from 'store/firebase';
+import { authActions } from './actions';
 
 function* login(action) {
-  const {authProvider} = action.payload;
+  const { authProvider } = action.payload;
 
   try {
     const authData = yield call(
@@ -39,7 +39,4 @@ function* watchLogout() {
   yield takeLatest(authActions.LOGOUT, logout);
 }
 
-export const authSagas = [
-  fork(watchLogin),
-  fork(watchLogout)
-];
+export const authSagas = [fork(watchLogin), fork(watchLogout)];

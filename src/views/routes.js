@@ -1,4 +1,4 @@
-import {isAuthenticated} from 'store/auth';
+import { isAuthenticated } from 'store/auth';
 import App from './app';
 import LoginContainer from './container/login';
 
@@ -28,18 +28,21 @@ export const getRoutes = getState => {
   return {
     path: paths.ROOT,
     component: App,
-    childRoutes: [{
-      indexRoute: {
-        getComponent(location, cb) {
-          System.import('./container/dashboard')
-            .then(module => cb(null, module.default));
-        },
-        onEnter: requireAuth(getState)
+    childRoutes: [
+      {
+        indexRoute: {
+          getComponent(location, cb) {
+            System.import('./container/dashboard').then(module =>
+              cb(null, module.default));
+          },
+          onEnter: requireAuth(getState)
+        }
+      },
+      {
+        path: paths.LOGIN,
+        component: LoginContainer,
+        onEnter: requireUnauth(getState)
       }
-    }, {
-      path: paths.LOGIN,
-      component: LoginContainer,
-      onEnter: requireUnauth(getState)
-    }]
+    ]
   };
 };

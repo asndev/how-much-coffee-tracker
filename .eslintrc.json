@@ -1,8 +1,14 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "plugins": ["react"],
-  "extends": ["eslint:recommended", "plugin:react/recommended", "google"],
+  "plugins": ["react", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "google",
+    "prettier",
+    "prettier/react"
+  ],
   "env": {
     "browser": true,
     "es6": true,
@@ -14,6 +20,7 @@
     "modules": true
   },
   "rules": {
+    "prettier/prettier": ["error", {"singleQuote": true}],
     "require-jsdoc": "off",
     "comma-dangle": "off",
     "arrow-parens": "off",

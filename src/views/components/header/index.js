@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
 import './header.scss';
 
@@ -11,7 +11,7 @@ const renderUserNav = (user, logout) => {
   );
 };
 
-const Header = ({user, logout}) => {
+const Header = ({ user, logout }) => {
   return (
     <header className="header">
       <h1 className="header__title">How much Coffee?</h1>

@@ -16,8 +16,15 @@ const PROD_ENV = ENV === 'production';
 const TEST_ENV = ENV === 'test';
 
 const VENDOR = [
-  'react', 'react-dom', 'react-router', 'react-router-redux',
-  'react-redux', 'redux-saga', 'immutable', 'classnames', 'reselect'
+  'react',
+  'react-dom',
+  'react-router',
+  'react-router-redux',
+  'react-redux',
+  'redux-saga',
+  'immutable',
+  'classnames',
+  'reselect'
 ];
 
 // TODO split into webpack.config.dev.js etc.
@@ -48,7 +55,7 @@ const config = module.exports = {
           {
             loader: 'url-loader',
             // include images smaller than 40kb as raw
-            options: {limit: 40000}
+            options: { limit: 40000 }
           },
           'image-webpack-loader'
         ]
@@ -66,9 +73,7 @@ const config = module.exports = {
       minimize: PROD_ENV,
       debug: false,
       options: {
-        postcss: [
-          autoprefixer({browsers: ['> 5%']})
-        ],
+        postcss: [autoprefixer({ browsers: ['> 5%'] })],
         sassLoader: {
           outputStyle: 'compressed',
           precision: 10,
@@ -91,20 +96,16 @@ if (DEV_ENV || PROD_ENV) {
     publicPath: '/'
   };
 
-  config.plugins.push(
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      hash: false,
-      inject: 'body',
-      template: './src/index.html'
-    })
-  );
+  config.plugins.push(new HtmlWebpackPlugin({
+    filename: 'index.html',
+    hash: false,
+    inject: 'body',
+    template: './src/index.html'
+  }));
 
-  config.plugins.push(
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
-    })
-  );
+  config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+    names: ['vendor', 'manifest']
+  }));
 }
 
 if (DEV_ENV) {
@@ -116,10 +117,7 @@ if (DEV_ENV) {
     'webpack/hot/only-dev-server'
   );
 
-  config.plugins.push(
-    new HotModule(),
-    new ProgressPlugin()
-  );
+  config.plugins.push(new HotModule(), new ProgressPlugin());
 
   config.module.rules.push({
     test: /\.scss|\.css$/,
@@ -146,31 +144,28 @@ if (PROD_ENV) {
   config.devtool = 'hidden-source-map';
   config.entry.bundle.unshift('babel-polyfill');
   config.output.filename = '[name].[chunkhash].js';
-  config.plugins.push(
-    new UglifyJsPlugin({
-      comments: false,
-      compress: {
-        dead_code: true,
-        screw_ie8: true,
-        unused: true,
-        warnings: false
-      },
-      mangle: {
-        screw_ie8: true
-      }
-    })
-  );
+  config.plugins.push(new UglifyJsPlugin({
+    comments: false,
+    compress: {
+      dead_code: true,
+      screw_ie8: true,
+      unused: true,
+      warnings: false
+    },
+    mangle: {
+      screw_ie8: true
+    }
+  }));
 }
 
 if (PROD_ENV || TEST_ENV) {
-  config.plugins.push(
-    new ExtractTextPlugin('styles.[contenthash].css')
-  ),
-  config.module.rules.push({
+  config.plugins.push(new ExtractTextPlugin(
+    'styles.[contenthash].css'
+  )), config.module.rules.push({
     test: /\.scss|\.css$/,
     loader: ExtractTextPlugin.extract({
       fallbackLoader: 'style-loader',
-      loader: 'css-loader!sass-loader',
+      loader: 'css-loader!sass-loader'
     })
   });
 }
@@ -181,7 +176,7 @@ if (TEST_ENV) {
   config.entry = 'foobar';
   config.externals = {
     // make sure that those dependencies are available in the environment
-    'jsdom': 'window',
+    jsdom: 'window',
     'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true

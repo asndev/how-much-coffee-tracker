@@ -1,26 +1,28 @@
-import {call, fork, put, takeEvery, take, cancel} from 'redux-saga/effects';
-import {eventChannel} from 'redux-saga';
+import { call, fork, put, takeEvery, take, cancel } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 
-import {firebaseDb} from 'store/firebase';
-import {coffeesActions} from './actions';
-import {authActions} from 'store/auth/actions';
+import { firebaseDb } from 'store/firebase';
+import { coffeesActions } from './actions';
+import { authActions } from 'store/auth/actions';
 
 let path = null;
 
-const addTimestamp = (timestamp) => {
+const addTimestamp = timestamp => {
   if (path == null) throw Error('path cant be null');
   return new Promise((res, rej) => {
-    firebaseDb.ref(path)
-      .push({timestamp: timestamp.getTime()})
+    firebaseDb
+      .ref(path)
+      .push({ timestamp: timestamp.getTime() })
       .then(() => res())
       .catch(err => rej(err));
   });
 };
 
-const removeEntry = (id) => {
+const removeEntry = id => {
   if (id == null) throw new Error('id cant be null');
   return new Promise((res, rej) => {
-    firebaseDb.ref(`${path}/${id}`)
+    firebaseDb
+      .ref(`${path}/${id}`)
       .remove()
       .then(() => res())
       .catch(err => rej(err));
@@ -39,16 +41,17 @@ function* add(action) {
 }
 
 function* remove(action) {
-  const {id} = action.payload;
+  const { id } = action.payload;
   try {
     yield call(removeEntry, id);
     yield put(coffeesActions.removeSucceeded());
-  } catch(error) {
+  } catch (error) {
     yield put(coffeesActions.removeFailed(error));
   }
 }
 
-function* update() { // eslint-disable-line
+function* update() {
+  // eslint-disable-line
   // TODO We have to come up with an orderBy strategy for firebase
   const ref = firebaseDb.ref(path);
 
@@ -56,25 +59,26 @@ function* update() { // eslint-disable-line
   // callback scope. The eventChannel bridges the callback
   // and the generator scope.
   const channel = yield eventChannel(emit => {
-    ref.on('value', (data) => {
+    ref.on('value', data => {
       emit(coffeesActions.updateList(data.val()));
     });
 
     return () => ref.off();
   });
 
-  while(true) { // eslint-disable-line
+  // eslint-disable-next-line
+  while (true) {
     // This will yield on each ref-value event
     let action = yield take(channel);
     yield put(action);
   }
 }
 
-
 function* watchLoginSucceeded() {
   // TODO why does takeEvery not work here?
-  while (true) { // eslint-disable-line
-    const {payload} = yield take(authActions.LOGIN_SUCCEEDED);
+  // eslint-disable-next-line
+  while (true) {
+    const { payload } = yield take(authActions.LOGIN_SUCCEEDED);
     path = `coffees/${payload.authUser.uid}`;
 
     // As soon as we are logged in, we create a job to listen

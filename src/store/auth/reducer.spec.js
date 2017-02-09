@@ -1,11 +1,11 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import {authReducer, AuthState} from './reducer';
-import {authActions} from './actions';
+import { authReducer, AuthState } from './reducer';
+import { authActions } from './actions';
 
 describe('store', () => {
   describe('AuthReducer', () => {
     it('should have the correct inital state', () => {
-      const state = authReducer(undefined, {type: 'foobar'});
+      const state = authReducer(undefined, { type: 'foobar' });
       expect(state.authenticated).toBe(false);
       expect(state.uid).toBe(null);
       expect(state.user).toBe(null);
@@ -32,7 +32,9 @@ describe('store', () => {
         user: {}
       });
 
-      const state = authReducer(loggedIn, {type: authActions.LOGOUT_SUCCEEDED});
+      const state = authReducer(loggedIn, {
+        type: authActions.LOGOUT_SUCCEEDED
+      });
 
       expect(state.authenticated).toBe(false);
       expect(state.uid).toBe(null);

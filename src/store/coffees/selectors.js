@@ -1,4 +1,4 @@
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 
 // Memoized selector assures that getAuth will only recalculate iff
 // something from state.auth changes.

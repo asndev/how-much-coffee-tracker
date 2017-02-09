@@ -1,12 +1,11 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {coffeesActions, getCoffees} from 'store/coffees';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { coffeesActions, getCoffees } from 'store/coffees';
 
 import BoundComponent from 'views/components/base/bound-component';
 import Day from 'views/components/timestamps/day';
 
 class DashboardContainer extends BoundComponent {
-
   onClick() {
     this.props.add();
   }
@@ -21,16 +20,17 @@ class DashboardContainer extends BoundComponent {
       return 'no data yet';
     }
     const data = this.props.coffees;
-    return Object
-      .keys(data)
+    return Object.keys(data)
       .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
-      .map((day) => {
-        return <Day
-          key={day}
-          day={day}
-          timestamps={data[day]}
-          remove={this.onRemove}
-        />;
+      .map(day => {
+        return (
+          <Day
+            key={day}
+            day={day}
+            timestamps={data[day]}
+            remove={this.onRemove}
+          />
+        );
       });
   }
 
@@ -48,9 +48,9 @@ class DashboardContainer extends BoundComponent {
 }
 
 DashboardContainer.propTypes = {
-    add: PropTypes.func.isRequired,
-    remove: PropTypes.func.isRequired,
-    coffees: PropTypes.object
+  add: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+  coffees: PropTypes.object
 };
 
 const mapDispatchToProps = {
@@ -58,7 +58,4 @@ const mapDispatchToProps = {
   remove: coffeesActions.remove
 };
 
-export default connect(
-  getCoffees,
-  mapDispatchToProps
-)(DashboardContainer);
+export default connect(getCoffees, mapDispatchToProps)(DashboardContainer);

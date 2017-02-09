@@ -1,5 +1,5 @@
-import {Record} from 'immutable';
-import {authActions} from './actions';
+import { Record } from 'immutable';
+import { authActions } from './actions';
 
 export const AuthState = new Record({
   authenticated: false,
@@ -7,7 +7,7 @@ export const AuthState = new Record({
   user: null
 });
 
-export function authReducer(state = new AuthState(), {payload, type}) {
+export function authReducer(state = new AuthState(), { payload, type }) {
   switch (type) {
     case authActions.LOGIN_SUCCEEDED:
       return state.merge({

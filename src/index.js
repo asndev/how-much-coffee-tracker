@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
-import {browserHistory} from 'react-router';
-import {syncHistoryWithStore} from 'react-router-redux';
+import { AppContainer } from 'react-hot-loader';
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-import {firebaseAuth} from 'store/firebase';
-import {authActions} from './store/auth/actions';
-import {configureStore} from './store/store';
+import { firebaseAuth } from 'store/firebase';
+import { authActions } from './store/auth/actions';
+import { configureStore } from './store/store';
 import Root from './views/root';
 
 import './views/styles/globals.scss';
@@ -16,14 +16,12 @@ const rootElement = document.getElementById('root');
 
 function render(Root) {
   ReactDOM.render(
-    (
-      <AppContainer>
-        <Root
-          history={syncHistoryWithStore(browserHistory, store)}
-          store={store}
-        />
-      </AppContainer>
-    ),
+    <AppContainer>
+      <Root
+        history={syncHistoryWithStore(browserHistory, store)}
+        store={store}
+      />
+    </AppContainer>,
     rootElement
   );
 }

@@ -1,8 +1,8 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {authActions} from 'store/auth';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { authActions } from 'store/auth';
 
-const LoginContainer = ({loginWithGoogle}) => {
+const LoginContainer = ({ loginWithGoogle }) => {
   return (
     <div>
       <a onClick={loginWithGoogle}>Google Login</a>
