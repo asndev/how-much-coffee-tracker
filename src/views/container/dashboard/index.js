@@ -2,15 +2,16 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {coffeesActions, getCoffees} from 'store/coffees';
 
+import BoundComponent from 'views/components/base/bound-component';
 import Day from 'views/components/timestamps/day';
 
-class DashboardContainer extends React.Component {
+class DashboardContainer extends BoundComponent {
 
-  handleClick() {
+  onClick() {
     this.props.add();
   }
 
-  handleRemove(id) {
+  onRemove(id) {
     this.props.remove(id);
   }
 
@@ -28,7 +29,7 @@ class DashboardContainer extends React.Component {
           key={day}
           day={day}
           timestamps={data[day]}
-          remove={this.handleRemove.bind(this)}
+          remove={this.onRemove}
         />;
       });
   }
@@ -37,7 +38,7 @@ class DashboardContainer extends React.Component {
     return (
       <div>
         <h4>Dashboard</h4>
-        <a onClick={this.handleClick.bind(this)}>I just had a coffee!</a>
+        <a onClick={this.onClick}>I just had a coffee!</a>
         <ul>
           {this.renderList()}
         </ul>
