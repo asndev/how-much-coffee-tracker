@@ -1,6 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
+// import ReactDOM from 'react-dom';
+import { render } from 'preact';
+// import { AppContainer } from 'react-hot-loader';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
@@ -14,23 +15,24 @@ import './views/styles/globals.scss';
 const store = configureStore();
 const rootElement = document.getElementById('root');
 
-function render(Root) {
-  ReactDOM.render(
-    <AppContainer>
-      <Root
-        history={syncHistoryWithStore(browserHistory, store)}
-        store={store}
-      />
-    </AppContainer>,
-    rootElement
+let root;
+
+function init(Root) {
+  root = render(
+    <Root
+      history={syncHistoryWithStore(browserHistory, store)}
+      store={store}
+    />,
+    rootElement,
+    root
   );
 }
 
-// if (module.hot) {
-//   module.hot.accept('./views/root', () => {
-//     render(require('./views/root').default);
-//   });
-// }
+if (module.hot) {
+  module.hot.accept('./views/root', () => {
+    requestAnimationFrame(init(require('./views/root').default));
+  });
+}
 
 // Before we render the app, we evaluate firebases `onAuthStateChanged` once
 // to login the user if a session is present in the local storage.
@@ -54,5 +56,5 @@ new Promise((resolve, reject) => {
     error => reject(error)
   );
 })
-  .then(_ => render(Root))
+  .then(_ => init(Root))
   .catch(e => console.error(e));

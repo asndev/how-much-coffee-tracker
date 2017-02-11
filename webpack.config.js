@@ -32,7 +32,7 @@ const VENDOR = [
 const config = module.exports = {
   resolve: {
     alias: {
-      'react': 'preact-compat',
+      react: 'preact-compat',
       'react-dom': 'preact-compat'
     },
     extensions: ['.js', '.json'],
@@ -116,14 +116,12 @@ if (DEV_ENV) {
   config.devtool = 'cheap-module-source-map';
 
   config.entry.bundle.unshift(
-    'babel-polyfill'
-    //'react-hot-loader/patch',
-    //'webpack/hot/only-dev-server'
+    'babel-polyfill',
+    // 'react-hot-loader/patch',
+    'webpack/hot/only-dev-server'
   );
 
-  config.plugins.push(
-    //new HotModule(),
-    new ProgressPlugin());
+  config.plugins.push(new HotModule(), new ProgressPlugin());
 
   config.module.rules.push({
     test: /\.scss|\.css$/,
