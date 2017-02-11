@@ -33,7 +33,6 @@ function* add(action) {
   const payload = action.payload;
   try {
     yield call(addTimestamp, payload.timestamp);
-    console.log('pushed successfully');
     yield put(coffeesActions.addSucceeded());
   } catch (error) {
     yield put(coffeesActions.addFailed(error));

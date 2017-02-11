@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import { firebaseAuth } from 'store/firebase';
 import { authActions } from './store/auth/actions';
@@ -14,14 +16,19 @@ import './views/styles/globals.scss';
 const store = configureStore();
 const rootElement = document.getElementById('root');
 
+// http://www.material-ui.com/#/get-started/installation
+injectTapEventPlugin();
+
 function render(Root) {
   ReactDOM.render(
-    <AppContainer>
-      <Root
-        history={syncHistoryWithStore(browserHistory, store)}
-        store={store}
-      />
-    </AppContainer>,
+    <MuiThemeProvider>
+      <AppContainer>
+        <Root
+          history={syncHistoryWithStore(browserHistory, store)}
+          store={store}
+        />
+      </AppContainer>
+    </MuiThemeProvider>,
     rootElement
   );
 }

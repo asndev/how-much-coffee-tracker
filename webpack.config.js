@@ -35,6 +35,7 @@ const config = module.exports = {
     modules: [
       // webpack starts to look for imports from here
       path.resolve('./src'),
+      path.resolve('./src/views/components'),
       'node_modules'
     ]
   },

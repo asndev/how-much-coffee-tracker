@@ -2,6 +2,9 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { coffeesActions, getCoffees } from 'store/coffees';
 
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import LocalCafe from 'material-ui/svg-icons/maps/local-cafe';
+
 import BoundComponent from 'views/components/base/bound-component';
 import Day from 'views/components/timestamps/day';
 
@@ -38,7 +41,13 @@ class DashboardContainer extends BoundComponent {
     return (
       <div>
         <h4>Dashboard</h4>
-        <a onClick={this.onClick}>I just had a coffee!</a>
+        <FloatingActionButton
+          onClick={this.onClick}
+          backgroundColor="#27c9b9"
+          style={buttonStyle}
+        >
+          <LocalCafe />
+        </FloatingActionButton>
         <ul>
           {this.renderList()}
         </ul>
@@ -46,6 +55,12 @@ class DashboardContainer extends BoundComponent {
     );
   }
 }
+
+const buttonStyle = {
+  position: 'fixed',
+  bottom: 30,
+  right: 30
+};
 
 DashboardContainer.propTypes = {
   add: PropTypes.func.isRequired,
