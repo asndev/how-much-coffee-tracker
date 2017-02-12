@@ -2,6 +2,7 @@ export const coffeesActions = {
   ADD: 'ADD',
   ADD_FAILED: 'ADD_FAILED',
   ADD_SUCCEEDED: 'ADD_SUCCEEDED',
+  ADD_SPECIFIC: 'ADD_SPECIFIC',
   UPDATE_LIST: 'UPDATE_LIST',
   REMOVE: 'REMOVE',
   REMOVE_SUCCEEDED: 'REMOVE_SUCCEEDED',
@@ -10,8 +11,13 @@ export const coffeesActions = {
     type: coffeesActions.ADD,
     payload: { timestamp: new Date() }
   }),
-  addSucceeded: () => ({
-    type: coffeesActions.ADD_SUCCEEDED
+  addSpecific: date => ({
+    type: coffeesActions.ADD,
+    payload: { timestamp: date }
+  }),
+  addSucceeded: timestamp => ({
+    type: coffeesActions.ADD_SUCCEEDED,
+    payload: { timestamp }
   }),
   addFailed: error => ({
     type: coffeesActions.ADD_FAILED,
