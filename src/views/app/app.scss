@@ -1,9 +1,9 @@
 
 main.main {
-  margin: 20 auto;
+  margin: 0 auto;
   padding: 40px;
   max-width: 800px;
-  
+
   background-color: white;
   border: 1px solid transparent;
   border-radius: 2px;
@@ -17,3 +17,31 @@ main.main {
   transition: box-shadow .4s ease-in-out;
 }
 
+nav {
+  background-color: blanchedalmond;
+  margin: 0 auto;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+
+    a {
+      text-decoration: none;
+    }
+
+    li {
+      padding: 0.5rem;
+      min-width: 140px;
+      display: flex;
+      justify-content: center;
+
+      &:hover {
+        background-color: darkgoldenrod;
+      }
+    }
+  }
+}

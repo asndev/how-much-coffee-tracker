@@ -5,7 +5,8 @@ import LoginContainer from './container/login';
 export const paths = {
   ROOT: '/',
   LOGIN: '/login',
-  DASHBOARD: '/'
+  DASHBOARD: '/',
+  EDIT: '/edit'
 };
 
 const requireAuth = getState => {
@@ -37,6 +38,14 @@ export const getRoutes = getState => {
           },
           onEnter: requireAuth(getState)
         }
+      },
+      {
+        path: paths.EDIT,
+        getComponent(location, cb) {
+          System.import('./container/edit').then(module =>
+            cb(null, module.default));
+        },
+        onEnter: requireAuth(getState)
       },
       {
         path: paths.LOGIN,
