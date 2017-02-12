@@ -5,6 +5,8 @@ import { firebaseDb } from 'store/firebase';
 import { coffeesActions } from './actions';
 import { authActions } from 'store/auth/actions';
 
+import { toastr } from 'react-redux-toastr';
+
 let path = null;
 
 const addTimestamp = timestamp => {
@@ -34,8 +36,13 @@ function* add(action) {
   try {
     yield call(addTimestamp, payload.timestamp);
     yield put(coffeesActions.addSucceeded(action.payload));
+    toastr.success(
+      'Add successful',
+      `Successfully added new timestamp ${payload.timestamp.toDateString()}`
+    );
   } catch (error) {
     yield put(coffeesActions.addFailed(error));
+    toastr.error('Error', 'An error occured while adding a timestamp');
   }
 }
 
@@ -44,6 +51,7 @@ function* remove(action) {
   try {
     yield call(removeEntry, id);
     yield put(coffeesActions.removeSucceeded());
+    toastr.success('Remove successful', 'Successfully removed a timestamp');
   } catch (error) {
     yield put(coffeesActions.removeFailed(error));
   }

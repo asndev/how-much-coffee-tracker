@@ -10,6 +10,7 @@ import { configureStore } from './store/store';
 import Root from './views/root';
 
 import './views/styles/globals.scss';
+import 'react-redux-toastr/src/styles/index.scss';
 
 const store = configureStore();
 const rootElement = document.getElementById('root');

@@ -138,8 +138,8 @@ if (DEV_ENV) {
 if (PROD_ENV) {
   config.performance = {
     hints: 'error',
-    maxAssetSize: 410000,
-    maxEntrypointSize: 750000
+    maxAssetSize: 450000,
+    maxEntrypointSize: 800000
   };
   config.devtool = 'hidden-source-map';
   config.entry.bundle.unshift('babel-polyfill');
