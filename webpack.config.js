@@ -24,7 +24,8 @@ const VENDOR = [
   'redux-saga',
   'immutable',
   'classnames',
-  'reselect'
+  'reselect',
+  'firebase'
 ];
 
 // TODO split into webpack.config.dev.js etc.
