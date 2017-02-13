@@ -23,7 +23,12 @@ class EditContainer extends BoundComponent {
         time: ''
       });
     } else {
-      console.log('Not a valid timestamp.', ts, this.state.date, this.state.time);
+      console.log(
+        'Not a valid timestamp.',
+        ts,
+        this.state.date,
+        this.state.time
+      );
       toastr.error('Error', `Not a valid date: ${ts}`);
     }
   }
