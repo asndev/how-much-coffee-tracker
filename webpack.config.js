@@ -105,7 +105,8 @@ if (DEV_ENV || PROD_ENV) {
   }));
 
   config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-    names: ['vendor', 'manifest']
+    names: ['vendor', 'manifest'],
+    minChunks: Infinity
   }));
 }
 
