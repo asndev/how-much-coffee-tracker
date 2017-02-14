@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
+// import { AppContainer } from 'react-hot-loader';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
@@ -17,12 +17,12 @@ const rootElement = document.getElementById('root');
 
 function render(Root) {
   ReactDOM.render(
-    <AppContainer>
-      <Root
-        history={syncHistoryWithStore(browserHistory, store)}
-        store={store}
-      />
-    </AppContainer>,
+    // <AppContainer>
+    <Root
+      history={syncHistoryWithStore(browserHistory, store)}
+      store={store}
+    />,
+    // </AppContainer>,
     rootElement
   );
 }
