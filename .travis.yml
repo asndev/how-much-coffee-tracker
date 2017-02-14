@@ -1,23 +1,20 @@
+sudo: false
+
 language: node_js
-dist: trusty
-sudo: required
-
 node_js:
-  - "6.1"
+  - 6.1
 
-before_script:
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+cache:
+  directories:
+    - node_modules
 
+before_install:
+  - npm install codecov.io coveralls
 
 after_success:
-  - npm run build
-  - ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
+  - cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
-addons:
-  apt:
-    sources:
-     - google-chrome
-    packages:
-     - google-chrome-stable
+branches:
+  only:
+    - master
