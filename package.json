@@ -29,6 +29,7 @@
     "reselect": "~2.5.4"
   },
   "devDependencies": {
+    "karma-chrome-launcher": "^2.0.0",
     "nwb": "0.15.x",
     "nwb-sass": "^0.7.1"
   },
