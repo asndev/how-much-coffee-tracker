@@ -1,15 +1,15 @@
 {
-  "name": "nwb-how-much-coffee-tracker",
+  "name": "how-much-coffee-tracker",
   "version": "1.0.0",
-  "description": "Describe nwb-how-much-coffee-tracker here",
-  "private": true,
+  "description": "Coffee Tracking App",
   "scripts": {
     "build": "nwb build-react-app",
     "clean": "nwb clean-app",
     "start": "nwb serve-react-app",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test:watch": "nwb test-react --server",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "babel-preset-es2015": "^6.16.0",
@@ -30,11 +30,10 @@
     "reselect": "~2.5.4"
   },
   "devDependencies": {
-    "firebase": "^3.6.9",
     "nwb": "0.15.x",
     "nwb-sass": "^0.7.1"
   },
-  "author": "",
+  "author": "Anton Stepan",
   "license": "MIT",
-  "repository": ""
+  "repository": "https://github.com/asndev/how-much-coffee-tracker"
 }
