@@ -16,7 +16,7 @@ after_success:
   - cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - npm run build
-  - npm run deploy --token $FIREBASE_TOKEN
+  - ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
 
 branches:
   only:
