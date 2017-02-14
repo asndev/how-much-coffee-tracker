@@ -37,7 +37,7 @@ class DashboardContainer extends BoundComponent {
   render() {
     return (
       <div>
-        <h4>Dashboard</h4>
+        <h4>Coffees</h4>
         <a onClick={this.onClick}>I just had a coffee!</a>
         <ul>
           {this.renderList()}
