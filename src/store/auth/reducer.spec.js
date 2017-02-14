@@ -1,6 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { authReducer, AuthState } from './reducer';
 import { authActions } from './actions';
+import expect from 'expect';
 
 describe('store', () => {
   describe('AuthReducer', () => {

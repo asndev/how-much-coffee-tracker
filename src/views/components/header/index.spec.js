@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render, unmountComponentAtNode } from 'react-dom';
+import expect from 'expect';
+
 import Header from './index';
 
 const noop = () => {};
@@ -9,33 +11,34 @@ const user = {
   }
 };
 
-describe('components', () => {
-  describe('Header', () => {
-    it('should render a header correctly', () => {
-      const wrapper = render(
-        <Header authenticated={false} logout={noop}>Foo</Header>
-      );
-      const header = wrapper.find('header');
+describe('Header Test', () => {
+  let node;
 
-      expect(header.length).toBe(1);
-      expect(header.hasClass('header')).toBe(true);
-    });
+  beforeEach(() => {
+    node = document.createElement('div');
+  });
 
-    it('should display `sign-out` when signed in', () => {
-      const wrapper = shallow(<Header user={user} logout={noop}>Foo</Header>);
+  afterEach(() => {
+    unmountComponentAtNode(node);
+  });
 
-      expect(wrapper.contains('Sign out')).toBe(true);
-    });
+  it('should render a header correctly', () => {
+    render(
+      <Header user={null} logout={noop}>Foo</Header>,
+      node,
+      () => {
+        expect(node.textContent).toContain('How much Coffee');
+      }
+    );
+  });
 
-    it('should set `onClick` correctly from props', () => {
-      const onClickSpy = jasmine.createSpy('onClickSpy');
-      const wrapper = shallow(
-        <Header user={user} logout={onClickSpy}>Foo</Header>
-      );
-
-      wrapper.find('a').simulate('click');
-
-      expect(onClickSpy).toHaveBeenCalledTimes(1);
-    });
+  it('should display `sign-out` when signed in', () => {
+    render(
+      <Header user={user} logout={noop}>Foo</Header>,
+      node,
+      () => {
+        expect(node.textContent).toContain('Sign out');
+      }
+    );
   });
 });

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { toastr } from 'react-redux-toastr';
 
 import { coffeesActions } from 'store/coffees';
 import BoundComponent from 'views/components/base/bound-component';
@@ -22,14 +21,6 @@ class EditContainer extends BoundComponent {
         date: '',
         time: ''
       });
-    } else {
-      console.log(
-        'Not a valid timestamp.',
-        ts,
-        this.state.date,
-        this.state.time
-      );
-      toastr.error('Error', `Not a valid date: ${ts}`);
     }
   }
 
