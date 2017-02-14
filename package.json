@@ -30,6 +30,7 @@
     "reselect": "~2.5.4"
   },
   "devDependencies": {
+    "firebase": "^3.6.9",
     "nwb": "0.15.x",
     "nwb-sass": "^0.7.1"
   },
