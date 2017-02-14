@@ -17,7 +17,15 @@ const TEST_ENV = ENV === 'test';
 
 const VENDOR = [
   'react',
-  'react-dom'
+  'react-dom',
+  'react-router',
+  'react-router-redux',
+  'react-redux',
+  'redux-saga',
+  'immutable',
+  'classnames',
+  'reselect',
+  'firebase'
 ];
 
 // TODO split into webpack.config.dev.js etc.
