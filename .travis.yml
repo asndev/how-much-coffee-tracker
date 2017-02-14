@@ -9,6 +9,7 @@ cache:
     - node_modules
 
 before_install:
+  - npm run clean
   - npm install codecov.io coveralls
 
 after_success:
