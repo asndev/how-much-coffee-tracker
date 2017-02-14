@@ -14,12 +14,8 @@ before_install:
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-
-deploy:
-  provider: script
-  script: git checkout . && npm run build && ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
-  on:
-    branch: master
+  - npm run build
+  - ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
 
 branches:
   only:
