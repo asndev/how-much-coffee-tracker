@@ -17,7 +17,7 @@ after_success:
 
 deploy:
   provider: script
-  script: npm run build && ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
+  script: git checkout . && npm run build && ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
   on:
     branch: master
 
