@@ -1,6 +1,5 @@
 import { isAuthenticated } from 'store/auth';
 import App from './app';
-import LoginContainer from './container/login';
 
 export const paths = {
   ROOT: '/',
@@ -49,7 +48,10 @@ export const getRoutes = getState => {
       },
       {
         path: paths.LOGIN,
-        component: LoginContainer,
+        getComponent(location, cb) {
+          System.import('./container/login').then(module =>
+            cb(null, module.default));
+        },
         onEnter: requireUnauth(getState)
       }
     ]
