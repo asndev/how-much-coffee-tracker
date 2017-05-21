@@ -28,8 +28,8 @@
     "react-router-redux": "~4.0.6",
     "redux": "~3.6.0",
     "redux-logger": "^2.8.1",
-    "redux-saga": "~0.15.0",
-    "reselect": "~2.5.4"
+    "reselect": "~3.0.0"
+    "redux-saga": "~0.15.0"
   },
   "author": "Anton Stepan",
   "license": "MIT",
