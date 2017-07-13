@@ -26,7 +26,7 @@
     "react-redux-toastr": "^6.2.6",
     "react-router": "~4.1.1",
     "react-router-redux": "~4.0.6",
-    "redux": "~3.6.0",
+    "redux": "~3.7.2",
     "redux-logger": "^3.0.0"
   },
   "author": "Anton Stepan",
