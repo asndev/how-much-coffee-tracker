@@ -21,7 +21,7 @@
     "nwb": "~0.16.1",
     "nwb-sass": "^0.7.1",
     "react-dom": "~15.5.0",
-    "react": "~15.5.0",
+    "react": "~16.1.1",
     "react-redux": "~5.0.2",
     "react-redux-toastr": "^6.2.6",
     "react-router": "~4.1.1",
