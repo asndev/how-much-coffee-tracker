@@ -18,7 +18,7 @@
     "firebase": "^4.0.0",
     "firebase-tools": "^3.2.3",
     "immutable": "^3.8.1",
-    "nwb": "~0.16.1",
+    "nwb": "~0.21.5",
     "nwb-sass": "^0.7.1",
     "react-dom": "~15.5.0",
     "react": "~15.5.0",
