@@ -23,7 +23,7 @@
     "react-dom": "~15.5.0",
     "react": "~15.5.0",
     "react-redux": "~5.0.2",
-    "react-redux-toastr": "^6.2.6",
+    "react-redux-toastr": "^7.2.2",
     "react-router": "~4.1.1",
     "react-router-redux": "~4.0.6",
     "redux": "~3.6.0",
